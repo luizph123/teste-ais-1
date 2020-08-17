@@ -25,6 +25,7 @@ export class GridPageComponent implements OnInit {
   getPokemons() {
     this.service.getAll().subscribe((res: Pokemon) => {
       this.list = this.sortPokemon(res)
+      console.log(JSON.stringify(res))
     });
   }
 

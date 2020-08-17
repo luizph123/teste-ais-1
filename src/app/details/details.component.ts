@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../utils/models/pokemon';
 import { DataService } from '../utils/services/data.service';
-import { tap } from 'rxjs/operators';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ModalAtacksComponent } from './modal-atacks/modal-atacks.component';
 
 @Component({
   selector: 'app-details',
@@ -12,17 +13,18 @@ export class DetailsComponent implements OnInit {
   data: Card;
   url: string;
 
-  constructor(private service: DataService) {
-    this.service.getData().pipe(
-      tap((res: Card) => {
-        this.url = res.imageUrlHiRes;
-        console.log(this.url, 'RES')
-      })
-    ).subscribe(e => {
-      this.data = e;
-      console.log(e, 'E')
+  constructor(private service: DataService, public dialog: MatDialog) {
+    this.service.data.subscribe((res: Card) => {
+      this.data = res;
+      this.url = res.imageUrlHiRes;
     });
   }
 
   ngOnInit(): void {}
+
+  openAttack(atk: any) {
+    const dialogRef = this.dialog.open(ModalAtacksComponent, {
+      data: atk,
+    });
+  }
 }

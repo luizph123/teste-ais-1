@@ -1,34 +1,46 @@
-<mat-card>
+<div class="container">
+  <mat-card>
     <div class="row">
-      <div class="col-6">
-        <img mat-card-lg-image [src]="url">
+      <div class="col-6 text-center">
+        <img [src]="url" class="img-fluid mx-auto img-height" />
+      </div>
+      <div class="col-6 text-center align-middle">
+        <div class="row">
+          <h1 class="w-100">{{ data.name }}</h1>
+        </div>
+        <div class="row">
+          <mat-list class="w-100">
+            <mat-list-item class="w-100">
+              <h3 class="w-100" >ID: {{ data.id | uppercase  }}</h3>
+            </mat-list-item>
+          </mat-list>
+        </div>
+        <div class="row">
+          <mat-list class="w-100">
+            <h2 class="w-100">Tipos:</h2>
+            <mat-list-item class="w-100" *ngFor="let item of data.types"><h3 class="w-100">{{
+              item
+            }}</h3></mat-list-item>
+          </mat-list>
+        </div>
+        <div class="row">
+          <mat-list class="w-100">
+            <h2>Fraquezas:</h2>
+            <mat-list-item class="w-100" *ngFor="let item of data.weaknesses"><h3 class="w-100">{{
+              item.type + ' ' + item.value
+            }}</h3></mat-list-item>
+          </mat-list>
+        </div>
+        <div class="row">
+          <mat-list class="w-100">
+            <h2>Ataques:</h2>
+            <mat-list-item class="w-100" *ngFor="let item of data.attacks">
+              <button mat-stroked-button color='warn' class="w-100" (click)='openAttack(item)'>{{
+                item.name
+              }}</button></mat-list-item>
+          </mat-list>
+        </div>
       </div>
     </div>
   </mat-card>
-  <!-- <div class="col-md-6">
-      <div class="row">
-        <h2>{{ data.name }}</h2>
-      </div>
-      <div class="row">
-        <h3>ID: {{ data.id }}</h3>
-      </div>
-      <div class="row">
-        <div class="row"><h3 class="card-title">Tipos</h3></div>
-        <div class="row" *ngFor="let item of data.types">
-          <span>{{ item }}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row"><h3 class="card-title">Fraquezas</h3></div>
-        <div class="row" *ngFor="let item of data.weaknesses">
-          <span>{{ item.type }}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row"><h3 class="card-title">Ataques:</h3></div>
-        <div class="row" *ngFor="let item of data.attacks">
-          <a (click)="detail(item)"><span>{{ item.name }}</span></a>
-        </div>
-      </div>
-    </div> -->
-  <!-- </div> -->
+</div>

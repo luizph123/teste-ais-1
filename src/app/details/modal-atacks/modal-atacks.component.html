@@ -1,1 +1,26 @@
-<p>modal-atacks works!</p>
+<div class="container">
+  <h2 mat-dialog-title>{{ data.name }}</h2>
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <h2>Dano: {{ data.damage }}</h2>
+    </div>
+    <div class="row" *ngIf="data.text !== ''">
+      <mat-list class="w-100">
+        <h2>Descrição:</h2>
+        <mat-list-item class="w-100 row"
+          ><h3 class="w-100">{{ data.text }}</h3></mat-list-item
+        >
+      </mat-list>
+    </div>
+    <div class="row">
+      <mat-list class="w-100">
+        <h2>Custo:</h2>
+        <mat-list-item class="w-100 row" *ngFor="let mana of manas; index as i"
+          ><h3 class="w-100">
+            {{ multipliers[i] + "x " + mana }}
+          </h3></mat-list-item
+        >
+      </mat-list>
+    </div>
+  </mat-dialog-content>
+</div>
